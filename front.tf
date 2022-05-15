@@ -1,5 +1,5 @@
 module "front" {
- source="modules/vm/"
+ source="./modules/vm/"
  dc_env = "dv"
  dc_vm_count = 2
  dc_vm_prefix = "dcrm"
