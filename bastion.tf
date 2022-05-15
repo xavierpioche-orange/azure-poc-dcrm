@@ -1,3 +1,11 @@
+variable dc_vm_source_connection {}
+
+resource "random_password" "password-bastion" {
+  length = 16
+  special = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
 resource "azurerm_network_interface" "nic-xx-proj-bastion" {
   name                = "nic-${var.dc_env}-${var.dc_vm_prefix}-bastion"
   location            = azurerm_resource_group.rg-base.location
@@ -32,7 +40,7 @@ resource "azurerm_network_security_group" "nsg-xx-proj-bastion" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "3389"
-    source_address_prefixes    = ["193.251.160.224","90.15.0.193"]
+    source_address_prefixes    = ["${var.dc_vm_source_connection}"]
     destination_address_prefix = "*"
   }
 }
@@ -47,8 +55,8 @@ resource "azurerm_windows_virtual_machine" "vm_xx_proj_bastion" {
   resource_group_name = azurerm_resource_group.rg-base.name
   location            = azurerm_resource_group.rg-base.location
   size                = "Standard_D2s_v3"
-  admin_username      = "osadmin"
-  admin_password      = "pheHjH3GJZ/S9FgS"
+  admin_username      = "mydmin"
+  admin_password      = random_password.password-bastion
   network_interface_ids = [
     azurerm_network_interface.nic-xx-proj-bastion.id
   ]

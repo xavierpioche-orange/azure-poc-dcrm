@@ -5,6 +5,12 @@ variable dc_vm_suffix {}
 variable dc_vm_data_disk_size {}
 variable dc_vm_cpu_ram { default = "Standard_D2s_v3"}
 
+resource "random_password" "password-template" {
+  length = 16
+  special = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
 resource "azurerm_network_interface" "nic-xx-template" {
   count = "${var.dc_vm_count}"
   name                = "nic-${var.dc_env}-${var.dc_vm_prefix}-${var.dc_vm_suffix}${var.count.index + 1}"
@@ -42,7 +48,7 @@ resource "azurerm_windows_virtual_machine" "vm_xx_template_as1" {
   location            = azurerm_resource_group.rg-base.location
   size                = "${var.dc_vm_cpu_ram}" #2cpu 8Goram
   admin_username      = "osadmin"
-  admin_password      = "AdmPlat1369=NoW@y"
+  admin_password      = random_password.password-template
   network_interface_ids = [
     azurerm_network_interface.nic-xx-template.id,
   ]
