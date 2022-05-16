@@ -99,6 +99,10 @@ output "bastion_priv_ip" {
    value = azurerm_network_interface.nic-xx-proj-bastion.private_ip_addresses
 }
 
+output "bastion_pub_ip" {
+  value = azurerm_public_ip.ip-public-xx-proj-bastion.ip_address 
+}
+
 output "bastion_pass" {
   value = azurerm_windows_virtual_machine.vm_xx_proj_bastion.admin_password
   sensitive = true 
