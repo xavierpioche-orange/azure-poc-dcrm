@@ -10,14 +10,14 @@ module "sql" {
 }
 
 
-output "v_ip" {
+output "sql_ip" {
   value = module.sql.vms_ip
 }
 
-output "v_vms" {
+output "sql_vms" {
     value = module.sql.vms_name
 }
 
-output "v_pass" {
+output "sql_pass" {
     value = module.sql.vms_pass
 }

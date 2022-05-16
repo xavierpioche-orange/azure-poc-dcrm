@@ -10,14 +10,14 @@ module "ssxs" {
 }
 
 
-output "v_ip" {
+output "ssxs_ip" {
   value = module.ssxs.vms_ip
 }
 
-output "v_vms" {
+output "ssxs_vms" {
     value = module.ssxs.vms_name
 }
 
-output "v_pass" {
+output "ssxs_pass" {
     value = module.ssxs.vms_pass
 }

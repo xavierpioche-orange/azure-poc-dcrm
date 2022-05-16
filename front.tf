@@ -9,14 +9,14 @@ module "front" {
  dc_region = azurerm_resource_group.rg-base.location 
 }
 
-output "v_ip" {
+output "front_ip" {
   value = module.front.vms_ip
 }
 
-output "v_vms" {
+output "front_vms" {
     value = module.front.vms_name
 }
 
-output "v_pass" {
+output "front_pass" {
     value = module.front.vms_pass
 }

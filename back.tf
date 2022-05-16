@@ -10,14 +10,14 @@ module "back" {
 }
 
 
-output "v_ip" {
+output "back_ip" {
   value = module.back.vms_ip
 }
 
-output "v_vms" {
+output "back_vms" {
     value = module.back.vms_name
 }
 
-output "v_pass" {
+output "back_pass" {
     value = module.back.vms_pass
 }
