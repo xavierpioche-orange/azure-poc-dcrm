@@ -37,8 +37,8 @@ resource "azurerm_managed_disk" "datadsk-xx-template" {
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "datadsk-attach-xx-template" {
-  managed_disk_id    = azurerm_managed_disk.datadsk-xx-template.id
-  virtual_machine_id = azurerm_windows_virtual_machine.vm_xx_template_as1.id
+  managed_disk_id    = azurerm_managed_disk.datadsk-xx-template[count.index].id
+  virtual_machine_id = azurerm_windows_virtual_machine.vm_xx_template_as1[count.index].id
   lun                = "10"
   caching            = "ReadWrite"
 }
