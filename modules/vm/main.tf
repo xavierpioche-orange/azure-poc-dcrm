@@ -3,7 +3,9 @@ variable dc_vm_count {}
 variable dc_vm_prefix {}
 variable dc_vm_suffix {}
 variable dc_vm_data_disk_size {}
+variable dc_region {}
 variable dc_vm_cpu_ram { default = "Standard_D2s_v3"}
+variable dc_subnet_id {}
 
 resource "random_password" "password-template" {
   length = 16
@@ -14,12 +16,12 @@ resource "random_password" "password-template" {
 resource "azurerm_network_interface" "nic-xx-template" {
   count = "${var.dc_vm_count}"
   name                = "nic-${var.dc_env}-${var.dc_vm_prefix}-${var.dc_vm_suffix}${var.count.index + 1}"
-  location            = azurerm_resource_group.rg-base.location
-  resource_group_name = azurerm_resource_group.rg-base.name
+  location            = "${var.dc_region}"
+  resource_group_name = "rg-${var.dc_env}-${var.dc_vm_prefix}"
 
   ip_configuration {
     name                          = "nic-${var.dc_env}-${var.dc_vm_prefix}-${var.dc_vm_suffix}${var.count.index + 1}"
-    subnet_id                     = azurerm_subnet.sn-base.id
+    subnet_id                     = var.dc_subnet_id
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -27,8 +29,8 @@ resource "azurerm_network_interface" "nic-xx-template" {
 resource "azurerm_managed_disk" "datadsk-xx-template" {
   count = "${var.dc_vm_count}"
   name                 = "datadsk-${var.dc_env}-${var.dc_vm_prefix}-${var.dc_vm_suffix}${var.count.index + 1}-disk1"
-  location             = azurerm_resource_group.rg-base.location
-  resource_group_name  = azurerm_resource_group.rg-base.name
+  location            = "${var.dc_region}"
+  resource_group_name = "rg-${var.dc_env}-${var.dc_vm_prefix}"
   storage_account_type = "Standard_LRS"
   create_option        = "Empty"
   disk_size_gb         = "${var.dc_vm_data_disk_size}"
@@ -44,8 +46,8 @@ resource "azurerm_virtual_machine_data_disk_attachment" "datadsk-attach-xx-templ
 resource "azurerm_windows_virtual_machine" "vm_xx_template_as1" {
   count = "${var.dc_vm_count}"
   name                = "${var.dc_env}-${var.dc_vm_prefix}-${var.dc_vm_suffix}${var.count.index + 1}"
-  resource_group_name = azurerm_resource_group.rg-base.name
-  location            = azurerm_resource_group.rg-base.location
+  resource_group_name = "rg-${var.dc_env}-${var.dc_vm_prefix}"
+  location            = "${var.dc_region}"
   size                = "${var.dc_vm_cpu_ram}" #2cpu 8Goram
   admin_username      = "osadmin"
   admin_password      = random_password.password-template

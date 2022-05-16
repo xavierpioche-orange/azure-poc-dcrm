@@ -5,4 +5,5 @@ module "ssxs" {
  dc_vm_prefix = "dcrm"
  dc_vm_suffix = "ssxs"
  dc_vm_data_disk_size = 300
+ dc_subnet_id = azurerm_subnet.sn-base.id
 }
