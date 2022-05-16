@@ -82,7 +82,7 @@ resource "azurerm_virtual_machine_extension" "vm_xx_template_as1_powershell" {
 EOF
 
 depends_on = [
-    azurerm_windows_virtual_machine.vm_xx_template_as1[count.index]
+    azurerm_windows_virtual_machine.vm_xx_template_as1
   ]
 }
 
