@@ -8,6 +8,7 @@ variable dc_vm_cpu_ram { default = "Standard_D2s_v3"}
 variable dc_subnet_id {}
 
 resource "random_password" "password-template" {
+  count = "${var.dc_vm_count}"
   length = 16
   special = true
   override_special = "!#$%&*()-_=+[]{}<>:?"
@@ -51,7 +52,7 @@ resource "azurerm_windows_virtual_machine" "vm_xx_template_as1" {
   location            = "${var.dc_region}"
   size                = "${var.dc_vm_cpu_ram}" #2cpu 8Goram
   admin_username      = "osadmin"
-  admin_password      = random_password.password-template.result
+  admin_password      = random_password.password-template[count.index].result
   network_interface_ids = [
     azurerm_network_interface.nic-xx-template[count.index].id,
   ]
