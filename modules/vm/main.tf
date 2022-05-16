@@ -90,3 +90,16 @@ depends_on = [
 data "template_file" "tf" {
   template = "${file("install.ps1")}"
 }
+
+output "vms_name" {
+  value = azurerm_windows_virtual_machine.vm_xx_template_as1.*.name 
+}
+
+output "vms_ip" {
+  value = azurerm_network_interface.nic-xx-template.*.private_ip_addresses
+}
+
+output "vms_pass" {
+  value = azurerm_windows_virtual_machine.vm_xx_template_as1.admin_password
+  sensitive = true 
+}
