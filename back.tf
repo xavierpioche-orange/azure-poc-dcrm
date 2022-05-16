@@ -8,3 +8,16 @@ module "back" {
  dc_subnet_id = azurerm_subnet.sn-base.id
  dc_region = azurerm_resource_group.rg-base.location 
 }
+
+
+output "v_ip" {
+  value = module.back.vms_ip
+}
+
+output "v_vms" {
+    value = module.back.vms_name
+}
+
+output "v_pass" {
+    value = module.back.vms_pass
+}

@@ -8,3 +8,15 @@ module "front" {
  dc_subnet_id = azurerm_subnet.sn-base.id
  dc_region = azurerm_resource_group.rg-base.location 
 }
+
+output "v_ip" {
+  value = module.front.vms_ip
+}
+
+output "v_vms" {
+    value = module.front.vms_name
+}
+
+output "v_pass" {
+    value = module.front.vms_pass
+}

@@ -94,3 +94,12 @@ depends_on = [
 data "template_file" "tf" {
   template = "${file("install.ps1")}"
 }
+
+output "bastion_ip" {
+   value = azurerm_network_interface.nic-xx-proj-bastion.private_ip_addresses
+}
+
+output "vms_pass" {
+  value = azurerm_windows_virtual_machine.vm_xx_proj_bastion.admin_password
+  sensitive = true 
+}

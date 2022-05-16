@@ -8,3 +8,16 @@ module "sql" {
  dc_subnet_id = azurerm_subnet.sn-base.id
  dc_region = azurerm_resource_group.rg-base.location 
 }
+
+
+output "v_ip" {
+  value = module.sql.vms_ip
+}
+
+output "v_vms" {
+    value = module.sql.vms_name
+}
+
+output "v_pass" {
+    value = module.sql.vms_pass
+}
