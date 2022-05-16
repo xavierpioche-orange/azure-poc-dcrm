@@ -71,7 +71,7 @@ resource "azurerm_windows_virtual_machine" "vm_xx_template_as1" {
 resource "azurerm_virtual_machine_extension" "vm_xx_template_as1_powershell" {
   count = "${var.dc_vm_count}"
   name = "powershell-${var.dc_env}-${var.dc_vm_prefix}--${var.dc_vm_suffix}${count.index + 1}" 
-  virtual_machine_id = azurerm_windows_virtual_machine.vm_xx_template_as1.id
+  virtual_machine_id = azurerm_windows_virtual_machine.vm_xx_template_as1[count.index].id
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
   type_handler_version = "1.10"
@@ -82,7 +82,7 @@ resource "azurerm_virtual_machine_extension" "vm_xx_template_as1_powershell" {
 EOF
 
 depends_on = [
-    azurerm_windows_virtual_machine.vm_xx_template_as1
+    azurerm_windows_virtual_machine.vm_xx_template_as1[count.index]
   ]
 }
 
