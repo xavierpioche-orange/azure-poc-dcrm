@@ -56,7 +56,7 @@ resource "azurerm_windows_virtual_machine" "vm_xx_proj_bastion" {
   location            = azurerm_resource_group.rg-base.location
   size                = "Standard_D2s_v3"
   admin_username      = "mydmin"
-  admin_password      = random_password.password-bastion
+  admin_password      = random_password.password-bastion.result
   network_interface_ids = [
     azurerm_network_interface.nic-xx-proj-bastion.id
   ]

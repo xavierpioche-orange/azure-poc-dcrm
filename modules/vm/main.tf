@@ -51,7 +51,7 @@ resource "azurerm_windows_virtual_machine" "vm_xx_template_as1" {
   location            = "${var.dc_region}"
   size                = "${var.dc_vm_cpu_ram}" #2cpu 8Goram
   admin_username      = "osadmin"
-  admin_password      = random_password.password-template
+  admin_password      = random_password.password-template.result
   network_interface_ids = [
     azurerm_network_interface.nic-xx-template[count.index].id,
   ]
