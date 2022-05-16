@@ -20,4 +20,5 @@ output "back_vms" {
 
 output "back_pass" {
     value = module.back.vms_pass
+    sensitive = true
 }

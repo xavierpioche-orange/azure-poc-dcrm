@@ -20,4 +20,5 @@ output "ssxs_vms" {
 
 output "ssxs_pass" {
     value = module.ssxs.vms_pass
+    sensitive = true
 }

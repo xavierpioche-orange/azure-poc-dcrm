@@ -20,4 +20,5 @@ output "sql_vms" {
 
 output "sql_pass" {
     value = module.sql.vms_pass
+    sensitive = true
 }

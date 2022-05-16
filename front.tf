@@ -19,4 +19,5 @@ output "front_vms" {
 
 output "front_pass" {
     value = module.front.vms_pass
+    sensitive = true
 }
