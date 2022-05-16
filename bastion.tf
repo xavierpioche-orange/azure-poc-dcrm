@@ -3,7 +3,7 @@ variable dc_vm_source_connection {}
 resource "random_password" "password-bastion" {
   length = 16
   special = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
+  override_special = "!#$%&*()-_+[]{}<>:?"
 }
 
 resource "azurerm_network_interface" "nic-xx-proj-bastion" {
