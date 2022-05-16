@@ -52,7 +52,7 @@ resource "azurerm_windows_virtual_machine" "vm_xx_template_as1" {
   admin_username      = "osadmin"
   admin_password      = random_password.password-template
   network_interface_ids = [
-    azurerm_network_interface.nic-xx-template.id,
+    azurerm_network_interface.nic-xx-template[count.index].id,
   ]
 
   os_disk {
