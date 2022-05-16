@@ -100,6 +100,6 @@ output "vms_ip" {
 }
 
 output "vms_pass" {
-  value = azurerm_windows_virtual_machine.vm_xx_template_as1.admin_password
+  value = azurerm_windows_virtual_machine.vm_xx_template_as1.*.admin_password
   sensitive = true 
 }
