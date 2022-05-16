@@ -6,4 +6,5 @@ module "front" {
  dc_vm_suffix = "front"
  dc_vm_data_disk_size = 100
  dc_subnet_id = azurerm_subnet.sn-base.id
+ dc_region = azurerm_resource_group.rg-base.location 
 }
