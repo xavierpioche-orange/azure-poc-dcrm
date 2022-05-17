@@ -1,4 +1,9 @@
+variable dc_env {}
+variable dc_vm_prefix {}
+variable dc_subnet_id {}
+variable dc_region {}
 variable dc_vm_source_connection {}
+
 
 resource "random_password" "password-bastion" {
   length = 16
