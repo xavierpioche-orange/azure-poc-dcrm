@@ -97,7 +97,7 @@ depends_on = [
 }
 
 data "template_file" "tf" {
-  template = "${file("../../install.ps1")}"
+  template = "${file("install.ps1")}"
 }
 
 output "bastion_priv_ip" {
