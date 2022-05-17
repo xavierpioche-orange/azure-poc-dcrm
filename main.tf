@@ -3,6 +3,7 @@ variable dc_env {}
 variable dc_region {}
 variable dc_nw_address_space {}
 variable dc_nw_subnet {}
+variable dc_vm_source_connection { default = "aaa.bbb.ccc.ddd" }
 
 terraform {
   required_providers {
