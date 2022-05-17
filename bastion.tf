@@ -4,7 +4,7 @@ module "bastion" {
  dc_vm_prefix = "dcrm"
  dc_subnet_id = azurerm_subnet.sn-base.id
  dc_region = azurerm_resource_group.rg-base.location 
- dc_vm_source_connection = "AAA.BBB.CCC.DDD"
+ dc_vm_source_connection = "aaa.bbb.ccc.ddd"
 }
 
 
